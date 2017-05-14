@@ -1,6 +1,7 @@
 // *****************************************************************************
 // Projects
 // *****************************************************************************
+cancelable in Global := true
 
 lazy val scalhama =
   project
@@ -9,10 +10,13 @@ lazy val scalhama =
     .settings(settings)
     .settings(
       libraryDependencies ++= Seq(
+        library.scalaFX,
         library.scalaCheck % Test,
         library.scalaTest  % Test
       )
-    )
+    ).settings(
+      fork in run := true
+  )
 
 // *****************************************************************************
 // Library dependencies
@@ -26,6 +30,7 @@ lazy val library =
     }
     val scalaCheck = "org.scalacheck" %% "scalacheck" % Version.scalaCheck
     val scalaTest  = "org.scalatest"  %% "scalatest"  % Version.scalaTest
+    val scalaFX    = "org.scalafx" %% "scalafx" % "8.0.102-R11"
   }
 
 // *****************************************************************************
